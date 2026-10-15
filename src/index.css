@@ -1,0 +1,439 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- 设计变量 ---------- */
+:root {
+  --paper: #faf8f4;
+  --paper-raised: #ffffff;
+  --paper-sunken: #f3efe8;
+  --line: #e7e1d7;
+  --ink: #1c1917;
+  --ink-soft: #57534e;
+  --ink-faint: #8c8579;
+  --moss: #14654f;
+  --moss-light: #1f7a61;
+  --ochre: #c0562f;
+}
+
+/* ---------- 基础层 ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: var(--ink);
+    font-size: 19px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 纸感底：柔和光晕 + 极淡点阵，营造安静的阅读氛围 */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(circle at 14% -12%, rgba(20, 101, 79, 0.08), transparent 45%),
+      radial-gradient(circle at 86% 2%, rgba(192, 86, 47, 0.07), transparent 42%),
+      radial-gradient(rgba(28, 25, 23, 0.055) 1px, transparent 1px);
+    background-size: auto, auto, 22px 22px;
+  }
+
+  ::selection {
+    background: rgba(20, 101, 79, 0.16);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* 细巧的暖色滚动条 */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #d8d1c6 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #d8d1c6;
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: #c3bbae;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* ---------- 组件层 ---------- */
+@layer components {
+  /* 卡片入场交错延迟 */
+  .stagger-1 { animation-delay: 60ms; }
+  .stagger-2 { animation-delay: 120ms; }
+  .stagger-3 { animation-delay: 180ms; }
+  .stagger-4 { animation-delay: 240ms; }
+  .stagger-5 { animation-delay: 300ms; }
+  .stagger-6 { animation-delay: 360ms; }
+
+  /* 分类与状态色板：色条 / 文字 / 浅底（Badge、Card、进度条共用） */
+  .accent-clay { background-color: #b4721f; }
+  .accent-teal { background-color: #3d7a75; }
+  .accent-pine { background-color: #14654f; }
+  .accent-stone { background-color: #8c8579; }
+  .accent-success { background-color: #2e7d5b; }
+  .accent-warning { background-color: #b4721f; }
+  .accent-danger { background-color: #b23a2e; }
+
+  .text-tone-clay { color: #8a5316; }
+  .text-tone-teal { color: #2f5f5b; }
+  .text-tone-pine { color: #0e4b3b; }
+  .text-tone-stone { color: #57534e; }
+  .text-tone-success { color: #245f46; }
+  .text-tone-warning { color: #8a5316; }
+  .text-tone-danger { color: #8e2e24; }
+
+  .bg-tone-clay { background-color: #f6eee2; }
+  .bg-tone-teal { background-color: #e6efee; }
+  .bg-tone-pine { background-color: #eaf1ee; }
+  .bg-tone-stone { background-color: #efece6; }
+  .bg-tone-success { background-color: #e8f1ec; }
+  .bg-tone-warning { background-color: #f7eedf; }
+  .bg-tone-danger { background-color: #f7e9e6; }
+
+  /* 六边形雷达图：能力面呼吸、扫描扇面旋转 */
+  .radar-area {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: radar-breathe 5s ease-in-out infinite;
+  }
+  .radar-sweep {
+    transform-origin: 200px 168px;
+    animation: radar-sweep 11s linear infinite;
+  }
+}
+
+/* ---------- Markdown 阅读排版 ---------- */
+.md-content {
+  max-width: 46rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  font-size: 20px;
+}
+
+.md-content > *:first-child {
+  margin-top: 0;
+}
+
+.md-content h1 {
+  font-family: Georgia, 'Times New Roman', 'Songti SC', 'STSong', SimSun, serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  margin: 2rem 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+.md-content h2 {
+  font-family: Georgia, 'Times New Roman', 'Songti SC', 'STSong', SimSun, serif;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 2rem 0 0.9rem;
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--moss);
+  line-height: 1.4;
+}
+
+.md-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.5rem 0 0.6rem;
+}
+
+.md-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.md-content p {
+  margin: 0.85rem 0;
+}
+
+.md-content ul,
+.md-content ol {
+  padding-left: 1.4rem;
+  margin: 0.85rem 0;
+}
+
+.md-content ul {
+  list-style: none;
+}
+
+.md-content ul > li {
+  position: relative;
+  margin: 0.4rem 0;
+}
+
+.md-content ul > li::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0.68em;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--moss-light);
+  opacity: 0.75;
+}
+
+.md-content ol {
+  list-style: none;
+  counter-reset: md-ol;
+}
+
+.md-content ol > li {
+  position: relative;
+  counter-increment: md-ol;
+  margin: 0.4rem 0;
+}
+
+.md-content ol > li::before {
+  content: counter(md-ol) '.';
+  position: absolute;
+  left: -1.5rem;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.md-content li > ul,
+.md-content li > ol {
+  margin: 0.35rem 0;
+}
+
+.md-content strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.md-content a {
+  color: var(--moss);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.18s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.md-content a:hover {
+  color: var(--ochre);
+}
+
+.md-content hr {
+  border: 0;
+  height: 1px;
+  background: var(--line);
+  margin: 2rem 0;
+}
+
+.md-content code {
+  background: var(--paper-sunken);
+  border: 1px solid var(--line);
+  padding: 0.1rem 0.34rem;
+  border-radius: 5px;
+  font-size: 0.88em;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, 'Courier New', monospace;
+  color: #8a3b1c;
+}
+
+.md-content pre {
+  background: #f7f4ee;
+  border: 1px solid var(--line);
+  padding: 1.05rem 1.15rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 1.15rem 0;
+  line-height: 1.65;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.md-content pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+/* rehype-highlight 注入的内联底色需让位给自定义代码块底色 */
+.md-content pre code.hljs {
+  background: transparent;
+  padding: 0;
+}
+
+.md-content blockquote {
+  border-left: 3px solid var(--ochre);
+  background: rgba(192, 86, 47, 0.045);
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  color: var(--ink-soft);
+  margin: 1.15rem 0;
+}
+
+.md-content blockquote p {
+  margin: 0.3rem 0;
+}
+
+.md-content table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.25rem 0;
+  width: 100%;
+  font-size: 1.125rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.md-content th,
+.md-content td {
+  padding: 0.55rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.md-content th {
+  background: var(--paper-sunken);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.md-content tbody tr:nth-child(even) {
+  background: rgba(243, 239, 232, 0.5);
+}
+
+.md-content tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.md-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+/* ---------- 雷达图动效关键帧 ---------- */
+@keyframes radar-breathe {
+  0%, 100% { opacity: 0.88; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+@keyframes radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- 无障碍：尊重减弱动效偏好 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Dify 悬浮气泡外观（元素由 embed.min.js 注入，故写在这里而非 JSX） ---------- */
+#dify-chatbot-bubble-button {
+  background-color: #14654f !important;
+  box-shadow: 0 10px 26px -8px rgba(20, 101, 79, 0.55) !important;
+}
+#dify-chatbot-bubble-window {
+  width: 24rem !important;
+  height: 40rem !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 24px 60px -18px rgba(28, 25, 23, 0.35) !important;
+}
+
+/* ---------- 整体字号放大（+2px）---------- */
+/* 覆盖 Tailwind 任意值工具类（写死 px，改根字号无效，故在此统一放大）；
+   标题/展示级（≥23px）保持不动。非 @layer 规则优先级高于 @layer utilities，可稳定覆盖。 */
+.text-\[10px\] { font-size: 12px; }
+.text-\[13px\] { font-size: 15px; }
+.text-\[14px\] { font-size: 16px; }
+.text-\[15px\] { font-size: 17px; }
+.text-\[16px\] { font-size: 18px; }
+.text-\[17px\] { font-size: 19px; }
+.text-\[18px\] { font-size: 20px; }
+.text-\[20px\] { font-size: 22px; }
+/* 少量默认字号类（Button / EmptyState 用到） */
+.text-sm  { font-size: 1rem; }      /* 14→16px */
+.text-lg  { font-size: 1.25rem; }   /* 18→20px */
+.text-xl  { font-size: 1.375rem; }  /* 20→22px */
+
+/* ---------- 首页：Dify 气泡旁的提示条 ---------- */
+/* 仅当 body 带 dify-hint-home 类（首页）时显示；气泡由第三方脚本注入，
+   故用伪元素挂在 #dify-chatbot-bubble-button 上，跟随气泡一起拖动。 */
+body.dify-hint-home #dify-chatbot-bubble-button::before {
+  content: '';
+  position: absolute;
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: #ffffff;
+  z-index: 2147483000;
+  pointer-events: none;
+  animation: dify-hint-in 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+body.dify-hint-home #dify-chatbot-bubble-button::after {
+  content: '有不会的题，可以问我哦';
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  background: #ffffff;
+  color: #1c1917;
+  font-family: 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 9px 14px;
+  border: 1px solid #e7e1d7;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px -8px rgba(28, 25, 23, 0.22);
+  z-index: 2147483000;
+  pointer-events: none;
+  animation: dify-hint-in 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes dify-hint-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}

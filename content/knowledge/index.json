@@ -1,0 +1,27 @@
+{
+  "categories": [
+    {
+      "id": "js",
+      "title": "JavaScript",
+      "topics": [
+        { "id": "closures", "title": "闭包", "file": "js/closures.md" },
+        { "id": "event-loop", "title": "事件循环与微任务", "file": "js/event-loop.md" }
+      ]
+    },
+    {
+      "id": "css",
+      "title": "CSS",
+      "topics": [
+        { "id": "box-model", "title": "盒模型与 BFC", "file": "css/box-model.md" }
+      ]
+    },
+    {
+      "id": "network",
+      "title": "网络 / HTTP",
+      "topics": [
+        { "id": "http-cache", "title": "HTTP 缓存", "file": "network/http-cache.md" },
+        { "id": "cors", "title": "跨域 CORS", "file": "network/cors.md" }
+      ]
+    }
+  ]
+}

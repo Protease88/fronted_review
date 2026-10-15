@@ -1,0 +1,70 @@
+{
+  "category": "network",
+  "questions": [
+    {
+      "id": "net-q1",
+      "type": "single",
+      "stem": "关于 HTTP 强缓存与协商缓存，正确的是？",
+      "options": [
+        "强缓存命中时不发请求，直接用本地副本",
+        "协商缓存命中时返回 200 与新内容",
+        "Cache-Control 优先级低于 Expires",
+        "ETag 优先级低于 Last-Modified"
+      ],
+      "answer": [0],
+      "explanation": "强缓存命中不发请求（200 from cache）；协商缓存发请求，未变返回 304。Cache-Control 优先级高于 Expires，ETag 优先级高于 Last-Modified。",
+      "topic": "http-cache"
+    },
+    {
+      "id": "net-q2",
+      "type": "multiple",
+      "stem": "以下哪些 HTTP 头用于 CORS 跨域控制？",
+      "options": [
+        "Access-Control-Allow-Origin",
+        "Access-Control-Allow-Credentials",
+        "Access-Control-Allow-Methods",
+        "Content-Security-Policy"
+      ],
+      "answer": [0, 1, 2],
+      "explanation": "CORS 通过 Access-Control-Allow-Origin / Credentials / Methods / Headers 等响应头声明允许的来源与方式；CSP 用于内容安全策略，与 CORS 无关。",
+      "topic": "cors"
+    },
+    {
+      "id": "net-q3",
+      "type": "single",
+      "stem": "携带 Cookie 的跨域请求（withCredentials）下，Access-Control-Allow-Origin 应如何设置？",
+      "options": [
+        "可设为 *",
+        "必须指定具体源，且配合 Access-Control-Allow-Credentials: true",
+        "留空即可",
+        "设为 null"
+      ],
+      "answer": [1],
+      "explanation": "携带凭据时 Allow-Origin 不能为 *，必须指定具体源，并配合 Allow-Credentials: true，否则浏览器拒绝响应。",
+      "topic": "cors"
+    },
+    {
+      "id": "net-q4",
+      "type": "single",
+      "stem": "非简单请求（如 PUT、带自定义头）在发送真实请求前，浏览器会先发什么？",
+      "options": ["GET 探测", "OPTIONS 预检", "HEAD 预检", "不预检，直接发"],
+      "answer": [1],
+      "explanation": "非简单请求会先发 OPTIONS 预检，服务端通过后才发送真实请求。",
+      "topic": "cors"
+    },
+    {
+      "id": "net-q5",
+      "type": "multiple",
+      "stem": "关于 HTTP 缓存策略，合理的做法有哪些？",
+      "options": [
+        "带指纹的静态资源用长 max-age + immutable",
+        "HTML 入口用 no-cache 或短 max-age",
+        "API 数据可用 ETag / Last-Modified 协商缓存",
+        "所有资源都设 no-store 以保证实时"
+      ],
+      "answer": [0, 1, 2],
+      "explanation": "指纹资源长缓存、HTML 保活、API 用协商缓存是常见组合；no-store 完全不缓存，并非所有场景合理。",
+      "topic": "http-cache"
+    }
+  ]
+}

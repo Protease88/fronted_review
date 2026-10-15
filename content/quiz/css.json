@@ -1,0 +1,56 @@
+{
+  "category": "css",
+  "questions": [
+    {
+      "id": "css-q1",
+      "type": "single",
+      "stem": "设置 box-sizing: border-box 后，一个元素的 width 包含哪些部分？",
+      "options": [
+        "仅 content",
+        "content + padding + border",
+        "仅 content + padding",
+        "content + margin"
+      ],
+      "answer": [1],
+      "explanation": "border-box（替代盒模型）下 width 包含 content、padding、border，更符合直觉，工程常全局设置。",
+      "topic": "box-model"
+    },
+    {
+      "id": "css-q2",
+      "type": "multiple",
+      "stem": "关于 BFC，下列说法正确的有哪些？",
+      "options": [
+        "BFC 可以包含内部浮动元素，避免父级高度塌陷",
+        "BFC 之间的垂直外边距不会合并",
+        "display: flow-root 是最干净触发 BFC 的方式",
+        "BFC 会让子元素脱离文档流"
+      ],
+      "answer": [0, 1, 2],
+      "explanation": "BFC 是独立渲染上下文，可包含浮动、隔离外边距塌陷、阻止合并；display: flow-root 触发 BFC 且副作用最小。BFC 不会让子元素脱离文档流。",
+      "topic": "box-model"
+    },
+    {
+      "id": "css-q3",
+      "type": "single",
+      "stem": "相邻两个块级元素的垂直外边距（margin）会发生什么？",
+      "options": ["相加", "取较大值（塌陷）", "取较小值", "相互抵消为 0"],
+      "answer": [1],
+      "explanation": "垂直外边距会合并（collapse），取较大值而非相加；触发 BFC 或插入 border/padding 可阻止。",
+      "topic": "box-model"
+    },
+    {
+      "id": "css-q4",
+      "type": "single",
+      "stem": "清除浮动最推荐、副作用最小的方式是？",
+      "options": [
+        "父元素设置 overflow: hidden",
+        "额外添加一个 clear: both 的空 div",
+        "父元素设置 display: flow-root",
+        "给父元素定高"
+      ],
+      "answer": [2],
+      "explanation": "display: flow-root 会触发 BFC 从而包含浮动，且无 overflow 裁剪等副作用，是最干净的方式。",
+      "topic": "box-model"
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "generatedAt": "2026-10-14T14:22:07.989Z",
+  "root": "d:/myproject/frontend-review",
+  "files": [
+    {
+      "file": "content/interview/alibaba.json",
+      "bytes": 4165,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/interview/bytedance.json",
+      "bytes": 3808,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/interview/tencent.json",
+      "bytes": 3780,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/knowledge/css/box-model.md",
+      "bytes": 1921,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/knowledge/index.json",
+      "bytes": 708,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/knowledge/js/closures.md",
+      "bytes": 1944,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/knowledge/js/event-loop.md",
+      "bytes": 1951,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/knowledge/network/cors.md",
+      "bytes": 2044,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/knowledge/network/http-cache.md",
+      "bytes": 1847,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/quiz/css.json",
+      "bytes": 2137,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/quiz/js.json",
+      "bytes": 2714,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "content/quiz/network.json",
+      "bytes": 2801,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "index.html",
+      "bytes": 308,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "package.json",
+      "bytes": 599,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "postcss.config.js",
+      "bytes": 81,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/App.jsx",
+      "bytes": 1403,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/components/FrameworkTree.jsx",
+      "bytes": 1409,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/components/Layout.jsx",
+      "bytes": 598,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/components/MarkdownView.jsx",
+      "bytes": 368,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/components/SearchBox.jsx",
+      "bytes": 1802,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/index.css",
+      "bytes": 1583,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/interview/InterviewDetail.jsx",
+      "bytes": 2704,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/interview/InterviewList.jsx",
+      "bytes": 5355,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/interview/bank.js",
+      "bytes": 1590,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/knowledge.js",
+      "bytes": 889,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/main.jsx",
+      "bytes": 277,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/pages/Home.jsx",
+      "bytes": 1072,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/pages/Topic.jsx",
+      "bytes": 936,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/quiz/Quiz.jsx",
+      "bytes": 4314,
+      "source": "replay:write+edit",
+      "note": "快照落后于最终态（备份拍于修改前），已采用回放"
+    },
+    {
+      "file": "src/quiz/QuizResult.jsx",
+      "bytes": 3351,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/quiz/Stats.jsx",
+      "bytes": 2508,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/quiz/Wrong.jsx",
+      "bytes": 2857,
+      "source": "replay:write+edit",
+      "note": "快照落后于最终态（备份拍于修改前），已采用回放"
+    },
+    {
+      "file": "src/quiz/bank.js",
+      "bytes": 1160,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/quiz/scoring.js",
+      "bytes": 519,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "src/quiz/storage.js",
+      "bytes": 1762,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "tailwind.config.js",
+      "bytes": 163,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    },
+    {
+      "file": "vite.config.js",
+      "bytes": 221,
+      "source": "replay:write+edit",
+      "note": "快照与回放一致"
+    }
+  ]
+}

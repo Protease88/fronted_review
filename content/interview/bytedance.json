@@ -1,0 +1,45 @@
+{
+  "company": "bytedance",
+  "questions": [
+    {
+      "id": "bytedance-1",
+      "company": "bytedance",
+      "category": "js",
+      "difficulty": "中等",
+      "round": "一面",
+      "question": "如何每隔一秒依次打印 1、2、3？请至少用闭包 + setTimeout 的思路实现。",
+      "answer": "## 闭包 + var（经典陷阱与解法）\n\n`var` 无块级作用域，循环内直接 `setTimeout` 会共用同一 `i`，全部打印终值。用闭包保存：\n\n```js\nfor (var i = 1; i <= 3; i++) {\n  (function (n) {\n    setTimeout(function () { console.log(n); }, n * 1000);\n  })(i);\n}\n```\n\n## 更优解法：let\n\n```js\nfor (let i = 1; i <= 3; i++) {\n  setTimeout(() => console.log(i), i * 1000);\n}\n```\n\n`let` 有块级作用域，每次迭代形成独立绑定。\n\n## async/await 思路\n\n```js\nasync function print() {\n  for (let i = 1; i <= 3; i++) {\n    await new Promise(r => setTimeout(r, 1000));\n    console.log(i);\n  }\n}\n```",
+      "topic": "closures"
+    },
+    {
+      "id": "bytedance-2",
+      "company": "bytedance",
+      "category": "js",
+      "difficulty": "中等",
+      "round": "一面",
+      "question": "Promise 和 setTimeout 混用时，执行顺序是怎样的？为什么微任务优先？",
+      "answer": "## 结论\n\n**微任务（Promise 回调）优先于下一个宏任务（setTimeout 回调）执行**。\n\n## 原因\n\n事件循环每处理完一个宏任务，会先**清空整个微任务队列**，再取下一个宏任务。因此即使 `setTimeout(..., 0)`，其回调也要等当前宏任务产生的所有微任务执行完。\n\n## 示例\n\n```js\nsetTimeout(() => console.log('timeout'), 0);\nPromise.resolve().then(() => console.log('promise'));\n// 输出顺序：promise -> timeout\n```\n\n这保证了 Promise 链的逻辑在 UI 渲染和后续宏任务之前完成。",
+      "topic": "event-loop"
+    },
+    {
+      "id": "bytedance-3",
+      "company": "bytedance",
+      "category": "css",
+      "difficulty": "简单",
+      "round": "一面",
+      "question": "如何使用 CSS 实现元素的水平垂直居中？请列举几种常见方案。",
+      "answer": "## 方案汇总\n\n### 1. Flex（最常用）\n\n```css\n.parent { display: flex; justify-content: center; align-items: center; }\n```\n\n### 2. Grid\n\n```css\n.parent { display: grid; place-items: center; }\n```\n\n### 3. 绝对定位 + transform（已知/未知尺寸均可）\n\n```css\n.child {\n  position: absolute;\n  top: 50%; left: 50%;\n  transform: translate(-50%, -50%);\n}\n```\n\n### 4. 绝对定位 + margin:auto（需定宽高）\n\n```css\n.child { position: absolute; inset: 0; margin: auto; width: 100px; height: 100px; }\n```\n\n实际项目中 Flex/Grid 最为简洁可靠。",
+      "topic": "box-model"
+    },
+    {
+      "id": "bytedance-4",
+      "company": "bytedance",
+      "category": "network",
+      "difficulty": "中等",
+      "round": "一面",
+      "question": "JSONP 的原理是什么？为什么它能实现跨域？有什么局限性？",
+      "answer": "## 原理\n\n`<script>` 标签的 `src` 不受同源策略限制。JSONP 动态创建 script，把回调名通过 `?callback=fn` 传给服务端，服务端返回 `fn(数据)` 形式的 JS，浏览器执行即拿到数据。\n\n```js\nfunction handle(data) { console.log(data); }\nconst s = document.createElement('script');\ns.src = 'https://api.x.com/data?callback=handle';\ndocument.body.appendChild(s);\n```\n\n## 为什么能跨域\n\nscript 资源加载不受同源限制，天然可跨域获取并执行。\n\n## 局限\n\n- 仅支持 `GET`\n- 错误处理弱（失败难捕获）\n- 存在 XSS 风险（依赖第三方脚本可信度）\n\n如今现代浏览器多用 CORS 替代 JSONP。",
+      "topic": "cors"
+    }
+  ]
+}

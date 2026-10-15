@@ -1,0 +1,45 @@
+{
+  "company": "tencent",
+  "questions": [
+    {
+      "id": "tencent-1",
+      "company": "tencent",
+      "category": "js",
+      "difficulty": "困难",
+      "round": "二面",
+      "question": "以下代码依次输出什么？并解释原因。\n\n```js\nconsole.log(1);\nsetTimeout(() => console.log(2), 0);\nPromise.resolve().then(() => console.log(3));\nconsole.log(4);\n```",
+      "answer": "## 输出\n\n```\n1\n4\n3\n2\n```\n\n## 原因\n\n1. 同步代码先执行：`console.log(1)`、`console.log(4)` 依次输出 → 打印 `1`、`4`。\n2. `setTimeout` 是**宏任务**，回调进入宏任务队列。\n3. `Promise.then` 是**微任务**，进入微任务队列。\n4. 当前宏任务（script）执行完，先清空微任务队列 → 打印 `3`。\n5. 再取下一个宏任务 → 打印 `2`。\n\n因此顺序为 `1 4 3 2`。",
+      "topic": "event-loop"
+    },
+    {
+      "id": "tencent-2",
+      "company": "tencent",
+      "category": "css",
+      "difficulty": "中等",
+      "round": "一面",
+      "question": "什么是 BFC？如何触发 BFC？它能解决哪些常见的布局问题？",
+      "answer": "## BFC\n\nBFC（Block Formatting Context，块级格式化上下文）是页面的一块独立渲染区域，内部元素的布局不会影响外部。\n\n## 常见触发方式\n\n- `overflow` 不为 `visible`（如 `overflow: hidden`）\n- `display: flow-root`\n- `float` 不为 `none`\n- `position` 为 `absolute`/`fixed`\n- `display: inline-block` / `flex` / `grid` 的直接子项等\n\n## 能解决的问题\n\n- **清除浮动**：父元素触发 BFC 可包裹浮动子元素，避免高度塌陷。\n- **阻止 margin 穿透/重叠**：BFC 之间 margin 不合并。\n- **自适应两栏**：BFC 不与浮动元素重叠。",
+      "topic": "box-model"
+    },
+    {
+      "id": "tencent-3",
+      "company": "tencent",
+      "category": "network",
+      "difficulty": "中等",
+      "round": "二面",
+      "question": "请说明浏览器强缓存与协商缓存的区别，以及常见的 Cache-Control 指令。",
+      "answer": "## 强缓存\n\n不发送请求，直接使用本地缓存。状态码 `200 (from memory/disk cache)`。\n\n- `Cache-Control: max-age=3600`（优先级高）\n- `Expires`（HTTP/1.0，绝对时间，已被前者取代）\n\n## 协商缓存\n\n发送请求，由服务端判断缓存是否有效：\n\n- `Last-Modified` / `If-Modified-Since`：基于修改时间\n- `ETag` / `If-None-Match`：基于内容指纹（更精确）\n\n若未变返回 `304 Not Modified`，否则返回 `200` 与新资源。\n\n## 常见指令\n\n- `no-cache`：每次都走协商缓存校验\n- `no-store`：完全不缓存\n- `public` / `private`：是否可被中间代理缓存",
+      "topic": "http-cache"
+    },
+    {
+      "id": "tencent-4",
+      "company": "tencent",
+      "category": "network",
+      "difficulty": "困难",
+      "round": "三面",
+      "question": "什么情况下浏览器会发送 CORS 预检（preflight）请求？预检请求包含哪些关键头？",
+      "answer": "## 触发预检的条件\n\n当请求**不是简单请求**时，浏览器先发 `OPTIONS` 预检，包括：\n\n- 使用了 `PUT`/`DELETE`/`PATCH` 等方法\n- `Content-Type` 为 `application/json` 等非表单类型\n- 携带自定义请求头（如 `Authorization`、`X-Token`）\n- 携带凭证且部分配置不满足简单请求条件\n\n## 预检请求关键头\n\n- 请求：`Access-Control-Request-Method`、`Access-Control-Request-Headers`\n- 响应：`Access-Control-Allow-Origin`、`Access-Control-Allow-Methods`、`Access-Control-Allow-Headers`、`Access-Control-Max-Age`（缓存预检结果，期限内不再发预检）\n\n预检通过后才发送真实请求。",
+      "topic": "cors"
+    }
+  ]
+}
