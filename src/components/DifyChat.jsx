@@ -153,6 +153,9 @@ export default function DifyChat() {
     window.difyChatbotConfig = {
       token: DIFY_TOKEN,
       baseUrl: DIFY_BASE_URL,
+      // SPA 运行时动态注入脚本，必须显式开启，否则 embed.min.js 会挂到
+      // document.body.onload 上等页面 load 事件，而那时 load 早已触发过 → 气泡永远不出现
+      dynamicScript: true,
       inputs: {},
       systemVariables: {},
       userVariables: {},
